@@ -14,7 +14,8 @@ func apiResponse(w http.ResponseWriter, r *http.Request) {
 	b, err := ioutil.ReadFile("responses/" + fileName + ".txt")
 	fileContent := string(b)
 	if err != nil {
-		fileContent = err.Error()
+		defaultFile, _ := ioutil.ReadFile("responses/default.txt")
+		fileContent = string(defaultFile)
 	}
 
 	w.WriteHeader(http.StatusOK)
